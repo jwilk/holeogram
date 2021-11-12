@@ -37,7 +37,8 @@ def print_map(file):
                 print_status(offset2, None, os.SEEK_END)
                 return
             raise
-        print_status(offset, offset2 - offset, whence)
+        if offset2 > offset:
+            print_status(offset, offset2 - offset, whence)
         whence = whence2
         offset = offset2
 
