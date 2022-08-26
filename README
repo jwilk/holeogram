@@ -1,0 +1,12 @@
+.. code:: console
+
+   $ truncate -s 1M img
+   $ echo foo >> img
+   $ truncate -s 2M img
+   $ holeogram img
+   0	1048576	hole
+   1048576	4096	data
+   1052672	1044480	hole
+   2097152		end
+
+.. vim:ft=rst ts=3 sts=3 sw=3 et
