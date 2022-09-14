@@ -1,0 +1,53 @@
+name: CI
+on:
+- push
+- pull_request
+jobs:
+  main:
+    strategy:
+      matrix:
+        include:
+        - python-version: '3.3'
+          os: ubuntu-18.04
+        - python-version: '3.4'
+          os: ubuntu-18.04
+        - python-version: '3.5'
+          os: ubuntu-20.04
+        - python-version: '3.6'
+          os: ubuntu-20.04
+        - python-version: '3.7'
+          os: ubuntu-20.04
+        - python-version: '3.8'
+          os: ubuntu-20.04
+        - python-version: '3.9'
+          os: ubuntu-20.04
+        - python-version: '3.10'
+          os: ubuntu-20.04
+        - python-version: '3.11-dev'
+          os: ubuntu-22.04
+    runs-on: ${{matrix.os}}
+    steps:
+    - uses: actions/checkout@v2
+    - name: set up Python ${{matrix.python-version}}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{matrix.python-version}}
+    - name: smoke test
+      run:
+        prove -v
+    - name: run pydiatra
+      run: |
+        python3 -m pip install pydiatra
+        python3 -m pydiatra -v .
+    - name: run pyflakes
+      if: matrix.python-version != 3.3
+      run: |
+        python3 -m pip install pyflakes
+        python3 -m pyflakes .
+    - name: check README syntax
+      run: |
+        python3 -m pip install restructuredtext-lint pygments
+        rst-lint --level=info --encoding=UTF-8 README
+
+# vim:ts=2 sts=2 sw=2 et
+
