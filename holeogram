@@ -4,10 +4,10 @@
 # Copyright © 2021 Jakub Wilk <jwilk@jwilk.net>
 # SPDX-License-Identifier: MIT
 
-import errno
 import argparse
-import sys
+import errno
 import os
+import sys
 
 type(lambda: (yield from []))  # Python >= 3.3 is required
 
