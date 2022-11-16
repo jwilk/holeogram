@@ -44,7 +44,10 @@ def print_map(file):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument('file', metavar='FILE', nargs='?')
+    ap.add_argument(
+        'file', metavar='FILE', nargs='?',
+        help='file to look into (default: stdin)'
+    )
     opts = ap.parse_args()
     if opts.file is None:
         if sys.stdin.isatty():
