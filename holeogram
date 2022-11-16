@@ -7,6 +7,7 @@
 import argparse
 import errno
 import os
+import signal
 import sys
 
 type(lambda: (yield from []))  # Python >= 3.3 is required
@@ -43,6 +44,7 @@ def print_map(file):
         offset = offset2
 
 def main():
+    signal.signal(signal.SIGPIPE, signal.SIG_DFL)
     ap = argparse.ArgumentParser()
     ap.add_argument(
         'file', metavar='FILE', nargs='?',
