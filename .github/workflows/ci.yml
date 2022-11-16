@@ -49,6 +49,13 @@ jobs:
       run: |
         python3 -m pip install pyflakes
         python3 -m pyflakes .
+    - name: run pylint
+      run: |
+        python3 -m pip install pylint
+        python3 -m pylint holeogram
+      if:
+        matrix.python-version != '3.3' &&
+        matrix.python-version != '3.4'
     - name: check README syntax
       run: |
         python3 -m pip install restructuredtext-lint pygments
