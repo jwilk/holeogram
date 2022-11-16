@@ -37,6 +37,9 @@ jobs:
     - name: smoke test
       run:
         prove -v
+    - name: install wheel
+      run:
+        python3 -m pip install wheel
     - name: run pydiatra
       run: |
         python3 -m pip install pydiatra
