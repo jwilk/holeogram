@@ -1,5 +1,14 @@
 .. code:: console
 
+   $ holeogram --help
+   usage: holeogram [-h] [FILE]
+
+   positional arguments:
+     FILE        file to look into (default: stdin)
+
+   options:
+     -h, --help  show this help message and exit
+
    $ truncate -s 1M img
    $ echo foo >> img
    $ truncate -s 2M img
