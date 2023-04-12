@@ -7,10 +7,6 @@ jobs:
     strategy:
       matrix:
         include:
-        - python-version: '3.3'
-          os: ubuntu-18.04
-        - python-version: '3.4'
-          os: ubuntu-18.04
         - python-version: '3.5'
           os: ubuntu-20.04
         - python-version: '3.6'
@@ -45,7 +41,6 @@ jobs:
         python3 -m pip install pydiatra
         python3 -m pydiatra -v .
     - name: run pyflakes
-      if: matrix.python-version != 3.3
       run: |
         python3 -m pip install pyflakes
         python3 -m pyflakes .
@@ -53,9 +48,6 @@ jobs:
       run: |
         python3 -m pip install pylint
         python3 -m pylint holeogram
-      if:
-        matrix.python-version != '3.3' &&
-        matrix.python-version != '3.4'
     - name: check README syntax
       run: |
         python3 -m pip install restructuredtext-lint pygments
