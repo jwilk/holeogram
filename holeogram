@@ -10,7 +10,7 @@ import os
 import signal
 import sys
 
-type(lambda: (yield from []))  # Python >= 3.3 is required
+type(rb'')  # Python >= 3.3 is required
 
 def print_status(offset, length, whence):
     if length is None:
